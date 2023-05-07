@@ -18,13 +18,13 @@
       <h1>Library</h1>
     </div>
     <div class="content">
-      <button id="add_book">Add book</button>
+      <button id="new_book">New book</button>
     </div>
     <div class="footer">
       <p>Dzianis Pilipuk project</p>
     </div>
-    <div class="add-book-form-wrapper">
-      <form action="/" method="get" class="add-book-form">
+    <div class="add-book-form-wrapper" id="add_book_form_screen">
+      <form action="/" method="get" class="add-book-form" id="add_book_form">
         <div class="inputs-wrapper">
           <label for="book_title">BOOK TITLE</label>
           <input
@@ -32,7 +32,6 @@
             name="book_title"
             id="book_title"
             placeholder="Title"
-            required
           />
           <label for="author">AUTHOR</label>
           <input type="text" name="author" id="author" placeholder="Author" />
