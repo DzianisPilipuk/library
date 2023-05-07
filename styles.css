@@ -1,0 +1,65 @@
+:root {
+  --basic-color: rgb(200, 200, 200);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 40px auto 40px;
+  margin: 0px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background-color: var(--basic-color);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-book-form-wrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* visibility: hidden; */
+}
+
+.add-book-form {
+  height: 250px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  position: relative;
+}
+
+.inputs-wrapper {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inputs-wrapper label {
+  margin-top: 10px;
+}
+
+#exit_form {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
