@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 const content = document.getElementById('content');
 const newBookButton = document.getElementById('new_book');
 const addBookButton = document.getElementById('add_book_button');
@@ -38,6 +38,10 @@ class Book {
 
 Book.counter = 0;
 
+function deleteElementFromLibrary(aid) {
+  myLibrary = myLibrary.filter((el) => el.id !== +aid);
+}
+
 function addBookToLibrary(title, author, pages) {
   const newBook = new Book(title, author, pages);
   myLibrary.push(newBook);
@@ -56,6 +60,10 @@ function addBookToLibrary(title, author, pages) {
   const deleteButton = document.createElement('button');
   deleteButton.setAttribute('class', 'delete-book-button');
   deleteButton.textContent = 'X';
+  deleteButton.addEventListener('click', (e) => {
+    e.target.parentElement.remove();
+    deleteElementFromLibrary(e.target.parentElement.id);
+  });
   content.appendChild(newBookDisplay);
   newBookDisplay.appendChild(newBookTitle);
   newBookDisplay.appendChild(newBookAuthor);
