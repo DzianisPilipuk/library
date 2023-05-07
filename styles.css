@@ -18,6 +18,9 @@ body {
 
 .content {
   background-color: var(--basic-color);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 100px;
 }
 
 .footer {
@@ -62,4 +65,21 @@ body {
   position: absolute;
   right: 5px;
   top: 5px;
+}
+
+.book-display {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  margin: 10px;
+  position: relative;
+}
+
+.delete-book-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }

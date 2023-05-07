@@ -1,5 +1,5 @@
 const myLibrary = [];
-const content = document.querySelector('content');
+const content = document.getElementById('content');
 const newBookButton = document.getElementById('new_book');
 const addBookButton = document.getElementById('add_book_button');
 const addBookFormScreen = document.getElementById('add_book_form_screen');
@@ -31,11 +31,38 @@ class Book {
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.id = Book.counter;
+    Book.counter += 1;
   }
 }
 
+Book.counter = 0;
+
 function addBookToLibrary(title, author, pages) {
-  myLibrary.push(new Book(title, author, pages));
+  const newBook = new Book(title, author, pages);
+  myLibrary.push(newBook);
+  const newBookTitle = document.createElement('div');
+  newBookTitle.textContent = title;
+  newBookTitle.setAttribute('class', 'title');
+  const newBookAuthor = document.createElement('div');
+  newBookAuthor.textContent = author;
+  newBookAuthor.setAttribute('class', 'author');
+  const newBookPages = document.createElement('div');
+  newBookPages.textContent = pages;
+  newBookPages.setAttribute('class', 'pages');
+  const newBookDisplay = document.createElement('div');
+  newBookDisplay.setAttribute('class', 'book-display');
+  newBookDisplay.setAttribute('id', newBook.id);
+  const deleteButton = document.createElement('button');
+  deleteButton.setAttribute('class', 'delete-book-button');
+  deleteButton.textContent = 'X';
+  content.appendChild(newBookDisplay);
+  newBookDisplay.appendChild(newBookTitle);
+  newBookDisplay.appendChild(newBookAuthor);
+  newBookDisplay.appendChild(newBookPages);
+  newBookDisplay.appendChild(deleteButton);
+  content.appendChild(newBookButton);
+  hideAddBookForm();
 }
 
 addBookButton.addEventListener('click', () => {
