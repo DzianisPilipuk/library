@@ -39,10 +39,6 @@ class Book {
 
 Book.counter = 0;
 
-function deleteElementFromLibrary(aid) {
-  myLibrary = myLibrary.filter((el) => el.id !== +aid);
-}
-
 function addBookToLibrary(title, author, pages) {
   function addTitle(parent, booktitle) {
     const newBookTitle = document.createElement("div");
@@ -77,6 +73,9 @@ function addBookToLibrary(title, author, pages) {
     newBookPagesWrapper.appendChild(newBookPages);
   }
   function addDeleteButton(parent) {
+    function deleteElementFromLibrary(aid) {
+      myLibrary = myLibrary.filter((el) => el.id !== +aid);
+    }
     const deleteButton = document.createElement("button");
     deleteButton.setAttribute("class", "delete-book-button");
     deleteButton.textContent = "X";
@@ -85,6 +84,31 @@ function addBookToLibrary(title, author, pages) {
       deleteElementFromLibrary(e.target.parentElement.id);
     });
     parent.appendChild(deleteButton);
+  }
+  function addIsReadCheckbox(parent) {
+    function addIsReadCheckboxFunction(checkbox) {
+      checkbox.addEventListener("change", function () {
+        const bookDisplay = this.closest(".book-display");
+        if (this.checked) {
+          bookDisplay.style.backgroundColor = "var(--is-read-color)";
+          myLibrary.find((obj) => obj.id === +bookDisplay.id).isRead = true;
+        } else {
+          bookDisplay.style.backgroundColor = "var(--white)";
+          myLibrary.find((obj) => obj.id === +bookDisplay.id).isRead = false;
+        }
+      });
+    }
+    const isReadCheckboxWrapper = document.createElement("div");
+    isReadCheckboxWrapper.setAttribute("class", "is-read-checkbox-wrapper");
+    const textIsReadCheckbox = document.createElement("div");
+    textIsReadCheckbox.textContent = "completed";
+    textIsReadCheckbox.setAttribute("class", "decorative-text");
+    const isReadCheckbox = document.createElement("input");
+    isReadCheckbox.setAttribute("type", "checkbox");
+    addIsReadCheckboxFunction(isReadCheckbox);
+    parent.appendChild(isReadCheckboxWrapper);
+    isReadCheckboxWrapper.appendChild(textIsReadCheckbox);
+    isReadCheckboxWrapper.appendChild(isReadCheckbox);
   }
 
   const newBook = new Book(title, author, pages);
@@ -97,6 +121,7 @@ function addBookToLibrary(title, author, pages) {
   addAuthor(newBookDisplay, author);
   addPages(newBookDisplay, pages);
   addDeleteButton(newBookDisplay);
+  addIsReadCheckbox(newBookDisplay);
   content.appendChild(newBookButton);
   hideAddBookForm();
 }
