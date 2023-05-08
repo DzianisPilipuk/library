@@ -1,5 +1,6 @@
 :root {
   --basic-color: rgb(200, 200, 200);
+  --dark-grey: rgb(110, 110, 110);
 }
 
 body {
@@ -76,6 +77,22 @@ body {
   height: 80px;
   margin: 10px;
   position: relative;
+}
+
+.author-wrapper,
+.pages-wrapper {
+  display: flex;
+  margin-top: 2px;
+}
+
+.author,
+.pages {
+  margin-left: 5px;
+}
+
+.decorative-text {
+  font-weight: 300;
+  color: var(--dark-grey);
 }
 
 .delete-book-button {
